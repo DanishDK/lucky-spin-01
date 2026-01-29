@@ -2,6 +2,7 @@
 
 // Install Services using the builder.Services methods
   //  TODO: include the builder service "AddControllers" to enable MVC controllers
+  builder.Services.AddControllersWithViews();
  
 
 //Builds the app with the added services
@@ -18,15 +19,15 @@ if (!app.Environment.IsDevelopment()) {
 }
 //   TODO: include the app method "UseRouting" to recognize custom "Routes" in place of folders and files
 
-
+app.UseRouting();
 
 //Configure Routing with a general pattern and a default setting if the URL path is left out
  // FIXME:if your have time, add a range(1,9) method to constrain luck between 1 and 9
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller}/{action}/{luck}",
-    defaults: new
+    pattern: "{controller}/{action}/{luck:range(1,9)}",
+    defaults: new 
     {
         controller = "Spinner",
         action = "Index",
